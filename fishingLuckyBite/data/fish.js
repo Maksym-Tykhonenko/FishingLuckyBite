@@ -1,0 +1,98 @@
+export const fish = [
+  {
+    id: 1,
+    name: 'Sander',
+    // name: Судак,
+    image: require('../assets/fish/Sander.jpg'),
+  },
+  {
+    id: 2,
+    name: 'Esox',
+    // name: Щука,
+    image: require('../assets/fish/Esox.jpg'),
+  },
+  {
+    id: 3,
+    name: 'Esox americanus',
+    // name: Щука американська,
+    image: require('../assets/fish/EsoxAmericanus.jpg'),
+  },
+  {
+    id: 4,
+    name: 'Silurus glanis',
+    // name: Сом,
+    image: require('../assets/fish/SilurusGlanis.jpg'),
+  },
+  {
+    id: 5,
+    name: 'Ictalurus punctatus',
+    // name: Сом канальний,
+    image: require('../assets/fish/IctalurusPunctatus.jpg'),
+  },
+  {
+    id: 6,
+    name: 'Rutilus',
+    // name: Плі́тка,
+    image: require('../assets/fish/Rutilus.jpg'),
+  },
+  {
+    id: 7,
+    name: 'Abramis',
+    // name: Лящ,
+    image: require('../assets/fish/Abramis.jpg'),
+  },
+  {
+    id: 8,
+    name: 'Cyprinus',
+    // name: Короп,
+    image: require('../assets/fish/Cyprinus.jpg'),
+  },
+  {
+    id: 9,
+    name: 'Scardinius',
+    // name: Краснопірка,
+    image: require('../assets/fish/Scardinius.jpg'),
+  },
+  {
+    id: 10,
+    name: 'Carassius',
+    // name: Карась,
+    image: require('../assets/fish/Carassius.jpg'),
+  },
+  {
+    id: 11,
+    name: 'Squalius cephalus',
+    // name: Головень європейський,
+    image: require('../assets/fish/SqualiusCephalus.jpg'),
+  },
+  {
+    id: 12,
+    name: 'Neogobius melanostomus',
+    // name: Бичок-кругляк,
+    image: require('../assets/fish/NeogobiusMelanostomus.jpg'),
+  },
+  {
+    id: 13,
+    name: 'Micropterus salmoides',
+    // name: Окунь великоротий,
+    image: require('../assets/fish/MicropterusSalmoides.jpg'),
+  },
+  {
+    id: 14,
+    name: 'Micropterus dolomieu',
+    // name: Окунь малоротий,
+    image: require('../assets/fish/MicropterusDolomieu.jpg'),
+  },
+  {
+    id: 15,
+    name: 'Perca fluviatilis',
+    // name: Окунь,
+    image: require('../assets/fish/PercaFluviatilis.jpg'),
+  },
+  {
+    id: 16,
+    name: 'Gymnocephalus',
+    // name: Йорж,
+    image: require('../assets/fish/Gymnocephalus.jpg'),
+  },
+];
