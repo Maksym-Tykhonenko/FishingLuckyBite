@@ -8,6 +8,7 @@ import HomeScreen from './screens/HomeScreen';
 import FishingScreen from './screens/FishingScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import OneFishingScreen from './screens/OneFishingScreen';
+//import CustomBarChart from './screens/test';
 
 const App = () => {
   return (

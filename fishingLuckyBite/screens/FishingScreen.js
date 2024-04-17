@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {fish} from '../data/fish';
 import {useWindowDimensions} from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const FishingScreen = ({navigation}) => {
   const {height, width} = useWindowDimensions();
@@ -23,17 +24,25 @@ const FishingScreen = ({navigation}) => {
           style={{
             position: 'relative',
             flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
+            marginTop: 40,
           }}>
-          <Text>Fishing Screen!!!</Text>
           <TouchableOpacity
             onPress={() => setModalClose(true)}
-            style={{position: 'absolute', top: 50, left: 20}}>
-            <Text>Bar</Text>
+            style={{
+              borderWidth: 2,
+              width: 60,
+              height: 60,
+              marginLeft: 10,
+              marginBottom: 10,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 10,
+              borderColor: '#ffe260',
+            }}>
+            <FontAwesome name="bars" style={{fontSize: 50, color: '#ffe260'}} />
           </TouchableOpacity>
 
-          <View style={{marginTop: 40}}>
+          <View style={{alignItems: 'center'}}>
             <ScrollView>
               {initialFishing.map(fish => {
                 return (
@@ -43,6 +52,7 @@ const FishingScreen = ({navigation}) => {
                     }}
                     style={{
                       alignItems: 'center',
+                      width: width * 0.9,
                       marginBottom: 15,
                       borderWidth: 2,
                       borderColor: '#ffe260',

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const HomeScreen = ({navigation}) => {
   const [modalClose, setModalClose] = useState(false);
@@ -21,15 +22,31 @@ const HomeScreen = ({navigation}) => {
           }}>
           <Text>Home Screen!!!</Text>
           <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Test');
+            }}>
+            <Text>Test Screen!!!</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={() => setModalClose(true)}
-            style={{position: 'absolute', top: 50, left: 20}}>
-            <Text>Bar</Text>
+            style={{
+              position: 'absolute',
+              top: 50,
+              left: 20,
+              borderWidth: 2,
+              width: 60,
+              height: 60,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 10,
+              borderColor: '#ffe260',
+            }}>
+            <FontAwesome name="bars" style={{fontSize: 50, color: '#ffe260'}} />
           </TouchableOpacity>
 
           <Modal animationType="fade" transparent={true} visible={modalClose}>
             <View
               style={{
-                backgroundColor: '#0f8ab4',
                 flex: 1,
                 marginRight: '30%',
                 borderRightColor: '#fff',
