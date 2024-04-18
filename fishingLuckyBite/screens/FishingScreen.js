@@ -11,12 +11,16 @@ import {
 import {fish} from '../data/fish';
 import {useWindowDimensions} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Entypo from 'react-native-vector-icons/Entypo'; // home
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'; // fish-fins
+import AntDesign from 'react-native-vector-icons/AntDesign'; // profile
 
 const FishingScreen = ({navigation}) => {
   const {height, width} = useWindowDimensions();
   const [modalClose, setModalClose] = useState(false);
   const [initialFishing, setInitialFishing] = useState(fish);
-  console.log('initialFishing==>', initialFishing);
+  const [modalAddFish, setModalAddFish] = useState(false);
+  console.log('modalAddFish==>', modalAddFish);
   return (
     <View style={{flex: 1}}>
       <ImageBackground source={require('../assets/bgr.jpeg')} style={{flex: 1}}>
@@ -26,21 +30,61 @@ const FishingScreen = ({navigation}) => {
             flex: 1,
             marginTop: 40,
           }}>
-          <TouchableOpacity
-            onPress={() => setModalClose(true)}
-            style={{
-              borderWidth: 2,
-              width: 60,
-              height: 60,
-              marginLeft: 10,
-              marginBottom: 10,
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 10,
-              borderColor: '#ffe260',
-            }}>
-            <FontAwesome name="bars" style={{fontSize: 50, color: '#ffe260'}} />
-          </TouchableOpacity>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            {/**Btn Sidebar Open */}
+            <TouchableOpacity
+              onPress={() => setModalClose(true)}
+              style={{
+                borderWidth: 2,
+                width: 60,
+                height: 60,
+                marginLeft: 10,
+                marginBottom: 10,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 10,
+                borderColor: '#ffe260',
+                shadowColor: '#ffe260',
+                shadowOffset: {
+                  width: 0,
+                  height: 12,
+                },
+                shadowOpacity: 1,
+                shadowRadius: 8,
+              }}>
+              <FontAwesome
+                name="bars"
+                style={{fontSize: 50, color: '#ffe260'}}
+              />
+            </TouchableOpacity>
+
+            {/**Btn Add Fish */}
+            <TouchableOpacity
+              onPress={() => setModalAddFish(!modalAddFish)}
+              style={{
+                borderWidth: 2,
+                width: 60,
+                height: 60,
+                marginRight: 10,
+                marginBottom: 10,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 10,
+                borderColor: '#ffe260',
+                shadowColor: '#ffe260',
+                shadowOffset: {
+                  width: 0,
+                  height: 12,
+                },
+                shadowOpacity: 1,
+                shadowRadius: 8,
+              }}>
+              <FontAwesome
+                name="plus"
+                style={{fontSize: 50, color: '#ffe260'}}
+              />
+            </TouchableOpacity>
+          </View>
 
           <View style={{alignItems: 'center'}}>
             <ScrollView>
@@ -78,6 +122,7 @@ const FishingScreen = ({navigation}) => {
             </ScrollView>
           </View>
 
+          {/**Sidebar */}
           <Modal animationType="fade" transparent={true} visible={modalClose}>
             <View
               style={{
@@ -94,7 +139,7 @@ const FishingScreen = ({navigation}) => {
                 <View style={{marginTop: 50, marginLeft: 10}}>
                   <TouchableOpacity
                     onPress={() => setModalClose(false)}
-                    style={{}}>
+                    style={{marginBottom: 20}}>
                     <Text
                       style={{
                         fontSize: 40,
@@ -110,15 +155,21 @@ const FishingScreen = ({navigation}) => {
                       setModalClose(false);
                       navigation.navigate('HomeScreen');
                     }}
-                    style={{}}>
-                    <Text
-                      style={{
-                        fontSize: 40,
-                        fontWeight: 'bold',
-                        color: '#ffe260',
-                      }}>
-                      Home
-                    </Text>
+                    style={{marginBottom: 20}}>
+                    <View style={{flexDirection: 'row'}}>
+                      <Entypo
+                        name="home"
+                        style={{fontSize: 43, color: '#ffe260', marginRight: 5}}
+                      />
+                      <Text
+                        style={{
+                          fontSize: 40,
+                          fontWeight: 'bold',
+                          color: '#ffe260',
+                        }}>
+                        Home
+                      </Text>
+                    </View>
                   </TouchableOpacity>
 
                   <TouchableOpacity
@@ -126,15 +177,21 @@ const FishingScreen = ({navigation}) => {
                       navigation.navigate('FishingScreen');
                       setModalClose(false);
                     }}
-                    style={{}}>
-                    <Text
-                      style={{
-                        fontSize: 40,
-                        fontWeight: 'bold',
-                        color: '#ffe260',
-                      }}>
-                      Fish
-                    </Text>
+                    style={{marginBottom: 20}}>
+                    <View style={{flexDirection: 'row'}}>
+                      <FontAwesome6
+                        name="fish-fins"
+                        style={{fontSize: 43, color: '#ffe260', marginRight: 5}}
+                      />
+                      <Text
+                        style={{
+                          fontSize: 40,
+                          fontWeight: 'bold',
+                          color: '#ffe260',
+                        }}>
+                        Fish
+                      </Text>
+                    </View>
                   </TouchableOpacity>
 
                   <TouchableOpacity
@@ -143,14 +200,20 @@ const FishingScreen = ({navigation}) => {
                       setModalClose(false);
                     }}
                     style={{}}>
-                    <Text
-                      style={{
-                        fontSize: 40,
-                        fontWeight: 'bold',
-                        color: '#ffe260',
-                      }}>
-                      Prifile
-                    </Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <AntDesign
+                        name="profile"
+                        style={{fontSize: 43, color: '#ffe260', marginRight: 5}}
+                      />
+                      <Text
+                        style={{
+                          fontSize: 40,
+                          fontWeight: 'bold',
+                          color: '#ffe260',
+                        }}>
+                        Profile
+                      </Text>
+                    </View>
                   </TouchableOpacity>
                 </View>
               </ImageBackground>

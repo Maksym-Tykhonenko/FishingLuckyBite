@@ -7,6 +7,9 @@ import {
   View,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Entypo from 'react-native-vector-icons/Entypo'; // home
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'; // fish-fins
+import AntDesign from 'react-native-vector-icons/AntDesign'; // profile
 
 const HomeScreen = ({navigation}) => {
   const [modalClose, setModalClose] = useState(false);
@@ -17,25 +20,16 @@ const HomeScreen = ({navigation}) => {
           style={{
             position: 'relative',
             flex: 1,
-            alignItems: 'center',
-            justifyContent: 'center',
+            marginTop: 40,
           }}>
-          <Text>Home Screen!!!</Text>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Test');
-            }}>
-            <Text>Test Screen!!!</Text>
-          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => setModalClose(true)}
             style={{
-              position: 'absolute',
-              top: 50,
-              left: 20,
               borderWidth: 2,
               width: 60,
               height: 60,
+              marginLeft: 10,
+              marginBottom: 10,
               alignItems: 'center',
               justifyContent: 'center',
               borderRadius: 10,
@@ -44,6 +38,7 @@ const HomeScreen = ({navigation}) => {
             <FontAwesome name="bars" style={{fontSize: 50, color: '#ffe260'}} />
           </TouchableOpacity>
 
+          {/**Sidebar */}
           <Modal animationType="fade" transparent={true} visible={modalClose}>
             <View
               style={{
@@ -60,7 +55,7 @@ const HomeScreen = ({navigation}) => {
                 <View style={{marginTop: 50, marginLeft: 10}}>
                   <TouchableOpacity
                     onPress={() => setModalClose(false)}
-                    style={{}}>
+                    style={{marginBottom: 20}}>
                     <Text
                       style={{
                         fontSize: 40,
@@ -76,15 +71,21 @@ const HomeScreen = ({navigation}) => {
                       setModalClose(false);
                       navigation.navigate('HomeScreen');
                     }}
-                    style={{}}>
-                    <Text
-                      style={{
-                        fontSize: 40,
-                        fontWeight: 'bold',
-                        color: '#ffe260',
-                      }}>
-                      Home
-                    </Text>
+                    style={{marginBottom: 20}}>
+                    <View style={{flexDirection: 'row'}}>
+                      <Entypo
+                        name="home"
+                        style={{fontSize: 43, color: '#ffe260', marginRight: 5}}
+                      />
+                      <Text
+                        style={{
+                          fontSize: 40,
+                          fontWeight: 'bold',
+                          color: '#ffe260',
+                        }}>
+                        Home
+                      </Text>
+                    </View>
                   </TouchableOpacity>
 
                   <TouchableOpacity
@@ -92,15 +93,21 @@ const HomeScreen = ({navigation}) => {
                       navigation.navigate('FishingScreen');
                       setModalClose(false);
                     }}
-                    style={{}}>
-                    <Text
-                      style={{
-                        fontSize: 40,
-                        fontWeight: 'bold',
-                        color: '#ffe260',
-                      }}>
-                      Fish
-                    </Text>
+                    style={{marginBottom: 20}}>
+                    <View style={{flexDirection: 'row'}}>
+                      <FontAwesome6
+                        name="fish-fins"
+                        style={{fontSize: 43, color: '#ffe260', marginRight: 5}}
+                      />
+                      <Text
+                        style={{
+                          fontSize: 40,
+                          fontWeight: 'bold',
+                          color: '#ffe260',
+                        }}>
+                        Fish
+                      </Text>
+                    </View>
                   </TouchableOpacity>
 
                   <TouchableOpacity
@@ -109,14 +116,20 @@ const HomeScreen = ({navigation}) => {
                       setModalClose(false);
                     }}
                     style={{}}>
-                    <Text
-                      style={{
-                        fontSize: 40,
-                        fontWeight: 'bold',
-                        color: '#ffe260',
-                      }}>
-                      Prifile
-                    </Text>
+                    <View style={{flexDirection: 'row'}}>
+                      <AntDesign
+                        name="profile"
+                        style={{fontSize: 43, color: '#ffe260', marginRight: 5}}
+                      />
+                      <Text
+                        style={{
+                          fontSize: 40,
+                          fontWeight: 'bold',
+                          color: '#ffe260',
+                        }}>
+                        Profile
+                      </Text>
+                    </View>
                   </TouchableOpacity>
                 </View>
               </ImageBackground>
