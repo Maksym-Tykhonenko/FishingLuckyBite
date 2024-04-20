@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   Image,
   ImageBackground,
@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
+  Animated,
 } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Entypo from 'react-native-vector-icons/Entypo'; // home
@@ -17,6 +18,7 @@ import {useWindowDimensions} from 'react-native';
 import {uid} from 'uid';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProfileScreen = ({navigation}) => {
   const {width} = useWindowDimensions();
@@ -26,11 +28,59 @@ const ProfileScreen = ({navigation}) => {
   const [name, setName] = useState();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selected, setSelected] = useState('');
-  console.log('selected==>', selected);
   const [fishingAdress, setFishingAdress] = useState('');
-  console.log('fishingAdress==>', fishingAdress);
   const [fishingData, setFishingData] = useState([]);
-  console.log('fishingData==>', fishingData);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
+    setData();
+  }, [selectPhoto, name, fishingData]);
+  //, selectPhoto
+  const setData = async () => {
+    try {
+      const data = {
+        name,
+        selectPhoto,
+        fishingData,
+      };
+
+      const jsonData = JSON.stringify(data);
+      await AsyncStorage.setItem(`ProfileScreen`, jsonData);
+      console.log('Дані збережено в AsyncStorage');
+      //console.log('55', jsonData);
+    } catch (e) {
+      console.log('Помилка збереження даних:', e);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const jsonData = await AsyncStorage.getItem(`ProfileScreen`);
+      if (jsonData !== null) {
+        const parsedData = JSON.parse(jsonData);
+        console.log('parsedData==>', parsedData);
+        setName(parsedData.name);
+        setSelectPhoto(parsedData.selectPhoto);
+        setFishingData(parsedData.fishingData);
+      }
+    } catch (e) {
+      console.log('Помилка отримання даних:', e);
+    }
+  };
+
+  //////////// LOADER
+  const appearingAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(appearingAnim, {
+      toValue: 1,
+      duration: 3000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
 
   /////////////////ImagePicer
   const ImagePicer = () => {
@@ -66,8 +116,9 @@ const ProfileScreen = ({navigation}) => {
   return (
     <View style={{flex: 1}}>
       <ImageBackground source={require('../assets/bgr.jpeg')} style={{flex: 1}}>
-        <View
+        <Animated.View
           style={{
+            opacity: appearingAnim,
             position: 'relative',
             flex: 1,
             marginTop: 40,
@@ -235,7 +286,7 @@ const ProfileScreen = ({navigation}) => {
             {!name ? (
               <View style={{alignItems: 'center', marginTop: 10}}>
                 <TextInput
-                  placeholderTextColor="#ffe260"
+                  placeholderTextColor="rgba(255, 217, 122, 0.3)"
                   placeholder="Enter your name..."
                   value={onChangeName}
                   onChangeText={setOnChangeName}
@@ -245,11 +296,12 @@ const ProfileScreen = ({navigation}) => {
                     marginBottom: 15,
                     paddingLeft: 10,
                     fontSize: 20,
-                    borderRadius: 15,
+                    //borderRadius: 15,
                     borderWidth: 3,
-                    borderColor: '#ffe260',
+                    borderColor: 'transparent',
+                    borderBottomColor: '#ffe260',
                     color: '#ffe260',
-                    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                    //backgroundColor: 'rgba(255, 255, 255, 0.2)',
                     width: width * 0.9,
                     height: 70,
                     shadowColor: '#ffe260',
@@ -394,8 +446,13 @@ const ProfileScreen = ({navigation}) => {
                   borderColor: '#ffd97a',
                 }}>
                 <Text
-                  style={{color: '#ffd97a', fontWeight: 'bold', fontSize: 28}}>
-                  Where I fished
+                  style={{
+                    color: '#ffd97a',
+                    fontWeight: 'bold',
+                    fontSize: 28,
+                    marginRight: 20,
+                  }}>
+                  Where I was fishing
                 </Text>
 
                 <TouchableOpacity
@@ -417,12 +474,12 @@ const ProfileScreen = ({navigation}) => {
                     shadowOffset: {width: 0, height: 10},
                     shadowOpacity: 0.9,
                     shadowRadius: 10,
-                    width: 60,
-                    height: 60,
+                    width: 50,
+                    height: 50,
                   }}>
                   <Text
                     style={{
-                      fontSize: 40,
+                      fontSize: 30,
                       shadowOffset: {width: 0, height: 18},
                       shadowOpacity: 0.9,
                       shadowRadius: 20,
@@ -437,7 +494,7 @@ const ProfileScreen = ({navigation}) => {
                   }}
                   showsVerticalScrollIndicator={false}>
                   <TextInput
-                    placeholderTextColor="#ffd97a"
+                    placeholderTextColor="rgba(255, 217, 122, 0.3)"
                     placeholder="Enter the address..."
                     value={fishingAdress}
                     onChangeText={setFishingAdress}
@@ -450,10 +507,10 @@ const ProfileScreen = ({navigation}) => {
                       paddingLeft: 10,
                       fontSize: 20,
                       borderWidth: 3,
-                      borderColor: '#ffd97a',
+                      borderColor: 'transparent',
+                      borderBottomColor: '#ffe260',
                       color: '#ffd97a',
                       backgroundColor: '#414147',
-                      borderRadius: 15,
                       width: 280,
                       height: 60,
                       shadowColor: '#000',
@@ -617,7 +674,7 @@ const ProfileScreen = ({navigation}) => {
               </ImageBackground>
             </View>
           </Modal>
-        </View>
+        </Animated.View>
       </ImageBackground>
     </View>
   );

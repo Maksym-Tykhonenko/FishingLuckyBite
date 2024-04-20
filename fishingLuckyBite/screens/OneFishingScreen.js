@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   Image,
   ImageBackground,
@@ -11,6 +11,7 @@ import {
   Modal,
   Dimensions,
   StyleSheet,
+  Animated,
 } from 'react-native';
 import {useWindowDimensions} from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -21,23 +22,69 @@ import DatePicker, {
 import {uid} from 'uid';
 import CustomBarChart from './test';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const OneFishingScreen = ({navigation, route}) => {
   const {height, width} = useWindowDimensions();
-  const {fish} = route.params;
-  //console.log('fish==>', fish);
+  const {name, image, inform} = route.params.fish;
 
   const [informAboutFish, setInformAboutFish] = useState(true);
   const [selectPhoto, setSelectPhoto] = useState([]);
-  console.log('selectPhoto.langth==>', selectPhoto.length);
 
   //////////////////////time picker
   const [visibleModal, setVisibleModal] = useState(false);
   const [timeSelected, setTimeSelected] = useState();
-  console.log('timeSelected==>', timeSelected);
   const [showePhotoBlock, setShowePhotoBlock] = useState(true);
-  console.log('showePhotoBlock==>', showePhotoBlock);
 
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useEffect(() => {
+    setData();
+  }, [allFishInTime, selectPhoto]);
+
+  const setData = async () => {
+    try {
+      const data = {
+        allFishInTime,
+        selectPhoto,
+      };
+
+      const jsonData = JSON.stringify(data);
+      await AsyncStorage.setItem(`OneFishingScreen${name}`, jsonData);
+      console.log('Дані збережено в AsyncStorage');
+    } catch (e) {
+      console.log('Помилка збереження даних:', e);
+    }
+  };
+
+  const getData = async () => {
+    try {
+      const jsonData = await AsyncStorage.getItem(`OneFishingScreen${name}`);
+      if (jsonData !== null) {
+        const parsedData = JSON.parse(jsonData);
+        console.log('parsedData==>', parsedData);
+        setAllFishInTime(parsedData.allFishInTime);
+        setSelectPhoto(parsedData.selectPhoto);
+      }
+    } catch (e) {
+      console.log('Помилка отримання даних:', e);
+    }
+  };
+
+  //////////// LOADER
+  const appearingAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(appearingAnim, {
+      toValue: 1,
+      duration: 3000,
+      useNativeDriver: true,
+    }).start();
+  }, []);
+
+  //////////////Time Picker
   const pickerOptions = {
     mainColor: '#0057FF',
     daysAnimationDistance: 300,
@@ -82,7 +129,6 @@ const OneFishingScreen = ({navigation, route}) => {
 
   ////////////////////////
   const [allFishInTime, setAllFishInTime] = useState([]);
-  console.log('allFishInTime==>', allFishInTime);
 
   useEffect(() => {
     if (timeSelected) {
@@ -100,7 +146,6 @@ const OneFishingScreen = ({navigation, route}) => {
 
     launchImageLibrary(options, response => {
       if (!response.didCancel) {
-        //console.log('response==>', response.assets[0].uri);
         setSelectPhoto([response.assets[0].uri, ...selectPhoto]);
       } else {
         console.log('Вибір скасовано');
@@ -113,8 +158,9 @@ const OneFishingScreen = ({navigation, route}) => {
       <ImageBackground source={require('../assets/bgr.jpeg')} style={{flex: 1}}>
         <SafeAreaView
           style={{position: 'relative', flex: 1, alignItems: 'center'}}>
-          <View
+          <Animated.View
             style={{
+              opacity: appearingAnim,
               flex: 1,
               width: width * 0.9,
               alignItems: 'center',
@@ -123,14 +169,20 @@ const OneFishingScreen = ({navigation, route}) => {
             }}>
             <ScrollView>
               <View style={{alignItems: 'center'}}>
-                <Text style={{fontWeight: 'bold', fontSize: 35}}>
-                  {fish.name}
-                </Text>
+                <Text style={{fontWeight: 'bold', fontSize: 35}}>{name}</Text>
               </View>
-              <Image
-                source={fish.image}
-                style={{borderRadius: 20, width: width * 0.9}}
-              />
+
+              {image.length > 3 ? (
+                <Image
+                  source={{uri: image}}
+                  style={{borderRadius: 20, width: width * 0.9, height: 170}}
+                />
+              ) : (
+                <Image
+                  source={image}
+                  style={{borderRadius: 20, width: width * 0.9, height: 170}}
+                />
+              )}
 
               {/**informAboutFish */}
               {informAboutFish ? (
@@ -139,7 +191,7 @@ const OneFishingScreen = ({navigation, route}) => {
                     title="Hide fish information"
                     onPress={() => setInformAboutFish(!informAboutFish)}
                   />
-                  <Text style={{fontSize: 25}}>{fish.inform}</Text>
+                  <Text style={{fontSize: 25}}>{inform}</Text>
                 </View>
               ) : (
                 <Button
@@ -235,7 +287,7 @@ const OneFishingScreen = ({navigation, route}) => {
                 </View>
               )}
             </ScrollView>
-          </View>
+          </Animated.View>
 
           {/**Modal time picker */}
           <Modal visible={visibleModal} transparent animationType={'slide'}>
