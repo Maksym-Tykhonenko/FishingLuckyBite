@@ -117,7 +117,9 @@ const FishingScreen = ({navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <ImageBackground source={require('../assets/bgr.jpeg')} style={{flex: 1}}>
+      <ImageBackground
+        source={require('../assets/rediz/bcgr/backgr.jpg')}
+        style={{flex: 1}}>
         <Animated.View
           style={{
             opacity: appearingAnim,
@@ -196,7 +198,7 @@ const FishingScreen = ({navigation}) => {
                       borderWidth: 2,
                       borderColor: '#ffe260',
                       borderRadius: 10,
-                      backgroundColor: '#f3f6fd',
+                      backgroundColor: 'transparent',
                     }}
                     key={fish.id}>
                     <Image
@@ -208,7 +210,12 @@ const FishingScreen = ({navigation}) => {
                         borderTopLeftRadius: 10,
                       }}
                     />
-                    <Text style={{fontWeight: 'bold', fontSize: 20}}>
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        fontSize: 20,
+                        color: '#ffe260',
+                      }}>
                       {fish.name}
                     </Text>
                   </TouchableOpacity>
@@ -224,22 +231,29 @@ const FishingScreen = ({navigation}) => {
                     style={{
                       alignItems: 'center',
                       width: width * 0.9,
+                      //height: width,
                       marginBottom: 15,
                       borderWidth: 2,
                       borderColor: '#ffe260',
                       borderRadius: 10,
-                      backgroundColor: '#f3f6fd',
+                      backgroundColor: 'transparent',
                     }}
                     key={fish.id}>
                     <Image
                       source={fish.image}
                       style={{
-                        width: width * 0.9,
+                        width: 285,
+                        height: 220,
                         borderTopRightRadius: 10,
                         borderTopLeftRadius: 10,
                       }}
                     />
-                    <Text style={{fontWeight: 'bold', fontSize: 20}}>
+                    <Text
+                      style={{
+                        fontWeight: 'bold',
+                        fontSize: 20,
+                        color: '#ffe260',
+                      }}>
                       {fish.name}
                     </Text>
                   </TouchableOpacity>

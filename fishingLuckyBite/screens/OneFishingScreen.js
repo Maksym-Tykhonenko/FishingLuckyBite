@@ -155,7 +155,9 @@ const OneFishingScreen = ({navigation, route}) => {
 
   return (
     <View style={{flex: 1}}>
-      <ImageBackground source={require('../assets/bgr.jpeg')} style={{flex: 1}}>
+      <ImageBackground
+        source={require('../assets/rediz/bcgr/backgr.jpg')}
+        style={{flex: 1}}>
         <SafeAreaView
           style={{position: 'relative', flex: 1, alignItems: 'center'}}>
           <Animated.View
@@ -164,12 +166,15 @@ const OneFishingScreen = ({navigation, route}) => {
               flex: 1,
               width: width * 0.9,
               alignItems: 'center',
-              backgroundColor: 'rgba(255, 255, 255, 0.2)',
+              //backgroundColor: 'rgba(255, 255, 255, 0.2)',
               borderRadius: 20,
             }}>
             <ScrollView>
               <View style={{alignItems: 'center'}}>
-                <Text style={{fontWeight: 'bold', fontSize: 35}}>{name}</Text>
+                <Text
+                  style={{fontWeight: 'bold', fontSize: 35, color: '#ffe260'}}>
+                  {name}
+                </Text>
               </View>
 
               {image.length > 3 ? (
@@ -180,7 +185,7 @@ const OneFishingScreen = ({navigation, route}) => {
               ) : (
                 <Image
                   source={image}
-                  style={{borderRadius: 20, width: width * 0.9, height: 170}}
+                  style={{borderRadius: 20, width: 350, height: 250}}
                 />
               )}
 
@@ -191,7 +196,7 @@ const OneFishingScreen = ({navigation, route}) => {
                     title="Hide fish information"
                     onPress={() => setInformAboutFish(!informAboutFish)}
                   />
-                  <Text style={{fontSize: 25}}>{inform}</Text>
+                  <Text style={{fontSize: 25, color: '#ffe260'}}>{inform}</Text>
                 </View>
               ) : (
                 <Button
@@ -223,7 +228,12 @@ const OneFishingScreen = ({navigation, route}) => {
               {allFishInTime.map(time => {
                 return (
                   <Text
-                    style={{fontSize: 24, fontWeight: 'bold', marginLeft: 10}}
+                    style={{
+                      fontSize: 24,
+                      fontWeight: 'bold',
+                      color: '#ffe260',
+                      marginLeft: 10,
+                    }}
                     key={uid()}>
                     {time}
                   </Text>

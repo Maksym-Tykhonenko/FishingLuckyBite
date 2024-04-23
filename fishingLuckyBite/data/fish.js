@@ -1,9 +1,67 @@
 export const fish = [
   {
+    id: 4,
+    name: 'Silurus glanis',
+    // name: Сом,
+    image: require('../assets/rediz/apdFish/SilurusGlanis.png'),
+    inform: `Fish from the catfish genus, a series of catfish (Siluriformes). A freshwater bottom river fish that lives in deep areas of rivers, deep channels and old streams, in lakes and reservoirs, as well as in brackish waters of estuaries. The largest freshwater fish in Europe. Valuable industrial fish.`,
+  },
+
+  {
+    id: 6,
+    name: 'Rutilus',
+    // name: Плі́тка,
+    image: require('../assets/rediz/apdFish/Rutilus.png'),
+    inform: `A species of fish of the carp family (Cyprinidae), one of the most common species of fish of the genus Gossip`,
+  },
+  {
+    id: 7,
+    name: 'Abramis',
+    // name: Лящ,
+    image: require('../assets/rediz/apdFish/Abramis.png'),
+    inform: `A species of fish of the carp family (Cyprinidae), a series of carp (Cypriniformes). Belongs to the monotypic genus of bream`,
+  },
+  {
+    id: 8,
+    name: 'Cyprinus',
+    // name: Короп,
+    image: require('../assets/rediz/apdFish/Cyprinus.png'),
+    inform: `Common freshwater industrial fish of the carp family. Usually characterized as an alien species originating in Asia. Introduced to many regions of the world, it has successfully naturalized in the reservoirs of Europe. The domesticated form of this fish is one of the most common commercial fish in temperate fisheries, the decorative form of domesticated carp is the piece carp.`,
+  },
+  {
+    id: 9,
+    name: 'Scardinius',
+    // name: Краснопірка,
+    image: require('../assets/rediz/apdFish/Scardinius.png'),
+    inform: `Length up to 36 cm, weight up to 400 — 500 g, sometimes up to 2 kg. The body is tall, flattened on the sides, the scales are relatively large. The head is small, the upper mouth is oblique, the teeth are double-rowed. The dorsal fin is strongly shifted back. The back is dark brown with a greenish tint, the sides are yellowish-golden, the belly is silvery. Dorsal and pectoral fins are gray with red tips, all others are bright red. Yellow eyes.`,
+  },
+  {
+    id: 10,
+    name: 'Carassius',
+    // name: Карась,
+    image: require('../assets/rediz/apdFish/Carassius.png'),
+    inform: `The body is tall with a thick back, moderately compressed from the sides. The scales are large and smooth to the touch. The color varies depending on the place of residence. Golden crucian carp can reach a body length of more than 50 cm and a weight of more than 3 kg, a silver crucian carp can reach a length of 40 cm and a weight of up to 2 kg.`,
+  },
+  {
+    id: 11,
+    name: 'Squalius cephalus',
+    // name: Головень європейський,
+    image: require('../assets/rediz/apdFish/SqualiusCephalus.png'),
+    inform: `The main one has a broad-fronted head with a clearly defined large mouth and a beautiful cylindrical body covered with large scales. The dorsal and anal fins are slightly rounded, the caudal fin is notched. The thick back is green-black, the sides are silver-yellow. Dorsal and tail fins are dark blue, pectoral, ventral and anal fins are orange.
+Length up to 80 cm, weight up to 4 kg`,
+  },
+  {
+    id: 12,
+    name: 'Neogobius melanostomus',
+    // name: Бичок-кругляк,
+    image: require('../assets/rediz/apdFish/NeogobiusMelanostomus.png'),
+    inform: `A small-sized demersal fish from the goby family (Gobiidae). It comes from the Ponto-Caspian region, the basins of the Black and Caspian seas.`,
+  },
+  {
     id: 1,
     name: 'Sander',
     // name: Судак,
-    image: require('../assets/fish/Sander.jpg'),
+    image: require('../assets/rediz/apdFish/Sander.png'),
     inform: `A genus of perch-like fish. Length up to 130 cm, weight up to 20 kg. Valuable industrial fish.
 There are 5 species in the genus:
 Sander lucioperca
@@ -16,74 +74,14 @@ Sander canadensis`,
     id: 2,
     name: 'Esox',
     // name: Щука,
-    image: require('../assets/fish/Esox.jpg'),
+    image: require('../assets/rediz/apdFish/Esox.png'),
     inform: `A genus of freshwater fish, the only one in the family Esocidae . The typical species of the genus is common pike (Esox lucius). Widespread in Europe, Siberia, North America.`,
   },
-  {
-    id: 4,
-    name: 'Silurus glanis',
-    // name: Сом,
-    image: require('../assets/fish/SilurusGlanis.jpg'),
-    inform: `Fish from the catfish genus, a series of catfish (Siluriformes). A freshwater bottom river fish that lives in deep areas of rivers, deep channels and old streams, in lakes and reservoirs, as well as in brackish waters of estuaries. The largest freshwater fish in Europe. Valuable industrial fish.`,
-  },
-  {
-    id: 5,
-    name: 'Ictalurus punctatus',
-    // name: Сом канальний,
-    image: require('../assets/fish/IctalurusPunctatus.jpg'),
-    inform: `An industrial species, it is bred in aquaculture in numerous fish farms in Ukraine.
-The long and slender body of this large freshwater fish is devoid of scales. The back is dark (sometimes almost black), the sides are silver-gray with dark spots, the belly is silver-white. Swimmers are colored in the color of the body; sometimes only the ends are dark. The head is of medium size (for the Ictaluridae family), the muzzle is slightly flattened, the mouth is voluminous, all-encompassing.`,
-  },
-  {
-    id: 6,
-    name: 'Rutilus',
-    // name: Плі́тка,
-    image: require('../assets/fish/Rutilus.jpg'),
-    inform: `A species of fish of the carp family (Cyprinidae), one of the most common species of fish of the genus Gossip`,
-  },
-  {
-    id: 7,
-    name: 'Abramis',
-    // name: Лящ,
-    image: require('../assets/fish/Abramis.jpg'),
-    inform: `A species of fish of the carp family (Cyprinidae), a series of carp (Cypriniformes). Belongs to the monotypic genus of bream`,
-  },
-  {
-    id: 8,
-    name: 'Cyprinus',
-    // name: Короп,
-    image: require('../assets/fish/Cyprinus.jpg'),
-    inform: `Common freshwater industrial fish of the carp family. Usually characterized as an alien species originating in Asia. Introduced to many regions of the world, it has successfully naturalized in the reservoirs of Europe. The domesticated form of this fish is one of the most common commercial fish in temperate fisheries, the decorative form of domesticated carp is the piece carp.`,
-  },
-  {
-    id: 9,
-    name: 'Scardinius',
-    // name: Краснопірка,
-    image: require('../assets/fish/Scardinius.jpg'),
-    inform: `Length up to 36 cm, weight up to 400 — 500 g, sometimes up to 2 kg. The body is tall, flattened on the sides, the scales are relatively large. The head is small, the upper mouth is oblique, the teeth are double-rowed. The dorsal fin is strongly shifted back. The back is dark brown with a greenish tint, the sides are yellowish-golden, the belly is silvery. Dorsal and pectoral fins are gray with red tips, all others are bright red. Yellow eyes.`,
-  },
-  {
-    id: 10,
-    name: 'Carassius',
-    // name: Карась,
-    image: require('../assets/fish/Carassius.jpg'),
-    inform: `The body is tall with a thick back, moderately compressed from the sides. The scales are large and smooth to the touch. The color varies depending on the place of residence. Golden crucian carp can reach a body length of more than 50 cm and a weight of more than 3 kg, a silver crucian carp can reach a length of 40 cm and a weight of up to 2 kg.`,
-  },
-  {
-    id: 11,
-    name: 'Squalius cephalus',
-    // name: Головень європейський,
-    image: require('../assets/fish/SqualiusCephalus.jpg'),
-    inform: `The main one has a broad-fronted head with a clearly defined large mouth and a beautiful cylindrical body covered with large scales. The dorsal and anal fins are slightly rounded, the caudal fin is notched. The thick back is green-black, the sides are silver-yellow. Dorsal and tail fins are dark blue, pectoral, ventral and anal fins are orange.
-Length up to 80 cm, weight up to 4 kg`,
-  },
-  {
-    id: 12,
-    name: 'Neogobius melanostomus',
-    // name: Бичок-кругляк,
-    image: require('../assets/fish/NeogobiusMelanostomus.jpg'),
-    inform: `A small-sized demersal fish from the goby family (Gobiidae). It comes from the Ponto-Caspian region, the basins of the Black and Caspian seas.`,
-  },
+];
+
+{
+  /**
+
   {
     id: 13,
     name: 'Micropterus salmoides',
@@ -112,4 +110,6 @@ Length up to 80 cm, weight up to 4 kg`,
     image: require('../assets/fish/Gymnocephalus.jpg'),
     inform: `The body is compressed from the sides. The mouth is small, retractable. There are bristle-like teeth on both jaws. There are few or no teeth on the vomer and palatine bones. There are no scales on the head. The lid bone ends in a spike.`,
   },
-];
+
+*/
+}

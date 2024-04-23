@@ -29,7 +29,9 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <ImageBackground source={require('../assets/bgr.jpeg')} style={{flex: 1}}>
+      <ImageBackground
+        source={require('../assets/rediz/bcgr/backgr.jpg')}
+        style={{flex: 1}}>
         <Animated.View
           style={{
             opacity: appearingAnim,
